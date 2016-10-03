@@ -1,0 +1,13 @@
+<h1>Eat-Da_Burger!</h1>
+{{!-- here we use the {{#if}} helper to conditionally render a block. If its argument returns false, undefined, null "", 0, or [], handlebars will not render the block.Because our database table has a column sleepy with values 0 or 1, we use this.sleepy to evaluate this condition. --}}
+<ul>
+  {{#each burger}}
+    {{#if this.devoured}}
+      <li>
+        {{this.id}}
+        {{this.burger_name}}
+
+      </li>
+    {{/if}}
+  {{/each}}
+</ul>

@@ -3,18 +3,25 @@ Here is the O.R.M. where you write functions that takes inputs and conditions an
 */
 var connection = require('../config/connection.js');
 
-function selectAll(){
+var orm = {//this object contains all the methods that allow us to pass and get data to mysql.
 
-}
+	selectAll: function(tableInput, cb){//the orm.all method selects all columns from burgers table and 'stores' the result from that query in a callback function. It will 'release' the result when the argument cb is passed to this method.
+		var queryString = 'SELECT * FROM ' + tableInput + ';';
+		connection.query(queryString, function (err, result) {
+			if (err) throw err;
+			cb(result);
+		});
 
-function insertOne(){
+	},
 
-}
+	insertOne: function (){
 
-function updateOne(){
+	},
 
-}
+	updateOne: function (){
 
+	}
+};
 
 
 

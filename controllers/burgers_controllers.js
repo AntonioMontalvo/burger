@@ -3,9 +3,22 @@ Here is where you create all the functions that will do the routing for your app
 */
 var express = require('express');
 var router = express.Router();// I control the routes.
-var cat = require('../models/burgers.js');//access to the database
+var burger = require('../models/burger.js');//access to the database
 
+//the first time the server recieves a request if it is is '/'. It redirects to '/index'.
+router.get('/', function (req, res) {
+	res.redirect('/index');
+});
 
+//READ
+//when the client requets '/cats' it calls the cat.all method and passes an anonymous function. This function has a parameter data. The argument given to data is the result 'stored' as a response from the orm.all method. Once the data is obtained the function gives an object to handlebars which will be render in index.handlebars
+router.get('/index', function (req, res) {
+	burger.selectAll(function (data) {
+		var hbsObject = { burger: data };
+		console.log(hbsObject);
+		res.render('index', hbsObject);
+	});
+});
 
 
 

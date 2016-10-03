@@ -27,7 +27,7 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 //ACCESS TO  THE ROUTES 
-// var routes = require('./controllers/cats_controller.js'); //TO BE DETERMINE
+var routes = require('./controllers/burgers_controllers.js'); 
 app.use('/', routes);//EXPRESS USE THIS
 
 
