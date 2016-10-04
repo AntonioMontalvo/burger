@@ -11,8 +11,9 @@ var burger = {
 			cb(res);
 		});
 	},
-	insertOne: function () {
-		orm.insertOne('burgers', function(res){
+	insertOne: function (cols, vals, cb) {
+		//the burger.insertOne method passes 2 arguments to orm.insertOne. The 'burgers' argument refers to the burgers table. cols refers to the burger_name column in the burgers table. The actual value comes from the request body name [req.body.burger_name] given through router.post. index.handlebars gives this information to router.post when the user clicks on the Devour it! button in the  form. The form has the action='index/create' and method 'POST' for this. And the callback function.
+		orm.insertOne('burgers', cols, vals, function(res){
 			cb(res);
 		});
 	},
