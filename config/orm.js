@@ -13,6 +13,19 @@ function printQuestionMarks(num) {
 	return arr.toString();
 }
 
+function objToSql(ob) {//ob would the columns and values that you want to update
+	// column1=value, column2=value2,...
+	var arr = [];
+
+	for (var key in ob) {
+		if (ob.hasOwnProperty(key)) {
+			console.log(typeof ob[key]);
+			arr.push(key + '= "' + ob[key] + '"');
+		}
+	}
+	return arr.toString();
+}
+
 
 var orm = {//this object contains all the methods that allow us to pass and get data to mysql.
 
@@ -32,7 +45,7 @@ var orm = {//this object contains all the methods that allow us to pass and get 
 		queryString = queryString + cols.toString();
 		queryString = queryString + ') ';
 		queryString = queryString + 'VALUES (';
-		queryString = queryString + printQuestionMarks(vals.length);//this call the function above.
+		queryString = queryString + printQuestionMarks(vals.length);//this calls the function above.
 		queryString = queryString + ') ';
 
 		console.log(queryString);
@@ -43,8 +56,19 @@ var orm = {//this object contains all the methods that allow us to pass and get 
 		});
 	},
 
-	updateOne: function (){
+	updateOne: function (table, objColVals, condition, cb){
+		var queryString = 'UPDATE ' + table;
 
+		queryString = queryString + ' SET ';
+		queryString = queryString + ' devoured = ' + 1;
+		queryString = queryString + ' WHERE ';
+		queryString = queryString + objToSql(objColVals);//this is the returned from the objToSql function.
+
+		console.log(queryString);
+		connection.query(queryString, function (err, result) {
+			if (err) throw err;
+			cb(result);
+		});
 	}
 };
 

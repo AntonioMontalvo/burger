@@ -27,6 +27,18 @@ router.post('/create', function (req, res) {
 	});
 });
 
+//UPDATE
+router.put('/update/:id', function (req, res) {
+	var condition = 'id = ' + req.params.id;
+
+	// console.log('condition', condition);
+	// console.log(req.body.burger_name);
+	burger.updateOne({ burger_name: req.body.burger_name }, condition, function () {
+		res.redirect('/index');
+	});
+});
+
+
 
 
 module.exports = router;

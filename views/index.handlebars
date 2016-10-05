@@ -20,9 +20,10 @@
 		        {{this.id}}
 		        {{this.burger_name}}
 
-		        {{!-- <form action="burger/update{{this.id}}?_method=PUT" method="POST">
-		        <input type="hidden" name="burger_name" value="true">
-		        <button class="btn btn-default btn-xs devour" type="submit">Devour it!</button> --}}
+		        <form action="/update/{{this.id}}?_method=PUT" method="POST">
+		        <input type="hidden" name="burger_name" value="{{this.burger_name}}">
+		        <button class="btn btn-default btn-xs devour" type="submit">Devour it!</button>
+		        </form>
 		      </li> 
 		    {{/unless}}
 		  {{/each}}
